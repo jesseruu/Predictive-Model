@@ -39,13 +39,20 @@ air_data.drop(['SO2'], axis = 1, inplace = True)
 # Por ello, directamente se eliminaran todos los datos nulos
 air_data.dropna(subset=["CO","O3","NO2","PM25","PM10"],axis=0, inplace=True)
 
+# Visualizando los datos
+X = air_data['PM25']
+y = air_data['FECHA']
+plt.figure(figsize=[14,9])
+plt.scatter(X,y)
+plt.xlabel('Particula PM')
+plt.ylabel('Fechas')
+plt.show() # Esta bastante roto porque me coge los mas de 1500 datos del CSV
+
 # Una vez que tenemos todos los datos limpios
 # Guardamos el dataframe en otro CSV para realizar el entrenamiento
 
 if os.path.exists('train'):
-    
     air_data.to_csv('train/minambiente_train_data.csv')
-        
 else:
     os.mkdir('train')
     air_data.to_csv('train/minambiente_train_data.csv')
