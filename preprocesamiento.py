@@ -1,3 +1,9 @@
+'''
+Sistema de prediccion del indice de calidad del aire de la ciudad de bogotá D.C
+La prediccion se hara dependiendo de cada particula registrada
+'''
+
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import os
@@ -13,7 +19,6 @@ columns_air = ["FECHA","PM25","PM10","O3","NO2","SO2","CO"]
 air_data.columns = columns_air
 
 # INFORMACION DE LOS DATOS | Descripcion general
-
 print("\nDESCRIPCION GENERAL DE LOS DATOS\n\n",air_data.describe())
 
 # Tamaño de los datos
@@ -24,9 +29,8 @@ print("\nFORMA DE LOS DATOS\n\n",air_data.shape)
 print("\nVALORES NULOS POR COLUMNA\n\n",air_data.isnull().sum())
 
 # LIMPIEZA DE DATOS
-# Eliminamos las columnas de fecha por que no es muy relevante
 # La columma de SO2 tambien se debe eliminar, debido que hay pocos registros 
-air_data.drop(['FECHA','SO2'], axis = 1, inplace = True)
+air_data.drop(['SO2'], axis = 1, inplace = True)
 
 # Eliminamos los valores con registros en 0
 # En este caso gracias a la informacion shape, sabemos que hay de 2200 registros
@@ -45,4 +49,3 @@ if os.path.exists('train'):
 else:
     os.mkdir('train')
     air_data.to_csv('train/minambiente_train_data.csv')
-    
