@@ -71,5 +71,9 @@ def exportando():
         os.mkdir('train')
         data.to_csv('train/minambiente_train_data.csv')
 
-if __name__ == "__main__":
+def main():
     exportando()
+    air_data = pd.read_csv('train/minambiente_train_data.csv')
+
+if __name__ == "__main__":
+    main()
