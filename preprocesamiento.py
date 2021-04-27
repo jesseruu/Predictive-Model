@@ -6,22 +6,21 @@ import pandas as pd
 import numpy as np
 import os
 
-# Importamos los datos de nuestra carpeta dataset
-air_data = pd.read_csv("dataset/minambiente-bogota-airQuality.csv")
-
-def tareas_iniciales(data):
+def tareas_iniciales():
+    # Importamos los datos de nuestra carpeta dataset
+    air_data = pd.read_csv("dataset/minambiente-bogota-airQuality.csv")
     # Reemplazamos los valores vacios con valores nulos
-    data.replace(r'^\s*$', np.NaN, regex=True, inplace= True)
+    air_data.replace(r'^\s*$', np.NaN, regex=True, inplace= True)
 
     # Renombramos las columnas
     columns_air = ["FECHA","PM25","PM10","O3","NO2","SO2","CO"]
-    data.columns = columns_air
+    air_data.columns = columns_air
 
-    return data
+    return air_data
 
 def informacion():
     # Accediendo a la data
-    data = tareas_iniciales(air_data)
+    data = tareas_iniciales()
     # INFORMACION DE LOS DATOS | Descripcion general
     print("\nDESCRIPCION GENERAL DE LOS DATOS\n\n",data.describe(include="all"))
     print("\nTIPO DE DATOS\n\n", data.dtypes)
@@ -73,7 +72,6 @@ def exportando():
 
 def main():
     exportando()
-    air_data = pd.read_csv('train/minambiente_train_data.csv')
 
 if __name__ == "__main__":
     main()
