@@ -52,10 +52,10 @@ def limpiando_datos():
     # Por ello es necesario cambio el tipo de dato de cada columna
     data['FECHA'] = pd.to_datetime(data['FECHA'])
 
-    return data
-
     for i in ['PM25','PM10','O3','NO2','CO']:
         data[i] = data[i].astype('int')
+
+    return data
 
 # Una vez que tenemos todos los datos limpios
 # Guardamos el dataframe en otro CSV para realizar el entrenamiento
