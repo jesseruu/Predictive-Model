@@ -19,7 +19,6 @@ air_data.columns = columns_air
 # INFORMACION DE LOS DATOS | Descripcion general
 print("\nDESCRIPCION GENERAL DE LOS DATOS\n\n",air_data.describe(include="all"))
 print("\nTIPO DE DATOS\n\n", air_data.dtypes)
-print("\nINFORMACION\n\n",air_data.info())
 
 # Tamaño de los datos
 print("\nTAMAÑO DE LOS DATOS\n\n",air_data.shape)
