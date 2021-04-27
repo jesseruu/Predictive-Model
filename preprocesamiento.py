@@ -2,8 +2,6 @@
 Sistema de prediccion del indice de calidad del aire de la ciudad de bogotá D.C
 La prediccion se hara dependiendo de cada particula registrada
 '''
-
-import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import os
@@ -19,10 +17,12 @@ columns_air = ["FECHA","PM25","PM10","O3","NO2","SO2","CO"]
 air_data.columns = columns_air
 
 # INFORMACION DE LOS DATOS | Descripcion general
-print("\nDESCRIPCION GENERAL DE LOS DATOS\n\n",air_data.describe())
+print("\nDESCRIPCION GENERAL DE LOS DATOS\n\n",air_data.describe(include="all"))
+print("\nTIPO DE DATOS\n\n", air_data.dtypes)
+print("\nINFORMACION\n\n",air_data.info())
 
 # Tamaño de los datos
-print("\nFORMA DE LOS DATOS\n\n",air_data.shape)
+print("\nTAMAÑO DE LOS DATOS\n\n",air_data.shape)
 
 # Verificar los valores nulos
 # Como se puede ver, la columna SO2 esta casi vacia
@@ -38,6 +38,18 @@ air_data.drop(['SO2'], axis = 1, inplace = True)
 # Los cuales son muchos para generarlos usando metodos estadisticos
 # Por ello, directamente se eliminaran todos los datos nulos
 air_data.dropna(subset=["CO","O3","NO2","PM25","PM10"],axis=0, inplace=True)
+
+# Tipo de datos 
+# Como se pudo identificar al ejecutar la funcion dtype sobre el dataframe
+# Todas las columnas y valores son de tipo object, es decir son strings aunque
+# Realmente muchos de estos valores son de tipo numericos y/o fechas
+# Por ello es necesario cambio el tipo de dato de cada columna
+air_data['FECHA'] = pd.to_datetime(air_data['FECHA'])
+
+for i in ['PM25','PM10','O3','NO2','CO']:
+    air_data[i] = air_data[i].astype('int')
+
+print("\nTIPO DE DATOS\n\n", air_data.dtypes)
 
 # Una vez que tenemos todos los datos limpios
 # Guardamos el dataframe en otro CSV para realizar el entrenamiento
