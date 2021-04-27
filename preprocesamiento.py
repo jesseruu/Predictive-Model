@@ -60,7 +60,7 @@ def limpiando_datos():
 # Una vez que tenemos todos los datos limpios
 # Guardamos el dataframe en otro CSV para realizar el entrenamiento
 
-def guardando():
+def exportando():
     data = limpiando_datos()
     # Comprobamos si la direccion para guardan el dataset limpio existe
     if os.path.exists('train'):
@@ -72,4 +72,4 @@ def guardando():
         data.to_csv('train/minambiente_train_data.csv')
 
 if __name__ == "__main__":
-    guardando()
+    exportando()
