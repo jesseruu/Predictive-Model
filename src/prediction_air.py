@@ -30,4 +30,4 @@ print('Error medio cuadratico:', metrics.mean_squared_error(y_test, y_pred))
 print('Raiz error medio cuadrático:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 
 # Precision
-print('Precision:', clf.score(X_train, y_train))
+print('Precision:', rfr.score(X_train, y_train))
