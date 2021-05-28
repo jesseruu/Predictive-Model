@@ -18,11 +18,11 @@ X = np.array(X).reshape(-1,1)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # Se entrena el modelo
-clf = RandomForestRegressor(n_estimators=200)
-clf.fit(X_train, y_train)
+rfr = RandomForestRegressor(n_estimators=200)
+rfr.fit(X_train, y_train)
 
 # Una vez entrenado, se establece el modelo predictivo
-y_pred = clf.predict(X_test)
+y_pred = rfr.predict(X_test)
 
 # Rendimiento del modelo
 print('Error Medio Absoluto:', metrics.mean_absolute_error(y_test, y_pred))
