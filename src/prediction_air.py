@@ -9,7 +9,7 @@ ica_quality = pd.read_csv('train/minambiente_train_data.csv')
 
 # Definimos las variables de X, y dependiendo de la particula 
 X = ica_quality['FECHA'].values
-op = input("Seleccione una opcion: ").upper()
+op = input("[PM25, PM10, O3, NO2, CO] \nSeleccione una opcion: ").upper()
 y = ica_quality[op].values
 
 X = np.array(X).reshape(-1,1)
