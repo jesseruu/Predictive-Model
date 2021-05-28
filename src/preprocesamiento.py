@@ -57,19 +57,6 @@ def limpiando_datos():
     for i in ['PM25','PM10','O3','NO2','CO']:
         data[i] = data[i].astype('int')
 
-    #if os.path.exists('visualization'):
-        
-    #    data.to_csv('visualization/minambiente_data_v.csv')
-            
-    #else:
-    #    os.mkdir('visualization')
-    #    data.to_csv('visualization/minambiente_data_v.csv')
-
-
- #   data['FECHA:YEAR'] = data['FECHA'].dt.year
- #   data['FECHA:MONTH'] = data['FECHA'].dt.month
- #   data['FECHA:DAY'] = data['FECHA'].dt.day
-
     print("\nTIPO DE DATOS\n\n", data.dtypes)
     return data
 
