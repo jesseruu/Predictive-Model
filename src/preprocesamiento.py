@@ -4,6 +4,7 @@ La prediccion se hara dependiendo de cada particula registrada
 '''
 import pandas as pd
 import numpy as np
+import datetime as dt
 import os
 
 def tareas_iniciales():
@@ -43,17 +44,33 @@ def limpiando_datos():
     # La columna con menos registros es CO seguido de NO2, el cual son 650
     # Los cuales son muchos para generarlos usando metodos estadisticos
     # Por ello, directamente se eliminaran todos los datos nulos
-    data.dropna(subset=["CO","O3","NO2","PM25","PM10"],axis=0, inplace=True)
+    data.dropna(subset=["CO","O3","NO2","PM25","PM10"],axis=0, inplace = True)
     # Tipo de datos 
     # Como se pudo identificar al ejecutar la funcion dtype sobre el dataframe
     # Todas las columnas y valores son de tipo object, es decir son strings aunque
     # Realmente muchos de estos valores son de tipo numericos y/o fechas
     # Por ello es necesario cambio el tipo de dato de cada columna
-    data['FECHA'] = pd.to_datetime(data['FECHA'])
+    # data['FECHA'] = pd.to_datetime(data['FECHA'])
+    tmp = data['FECHA'].str.split('/')
+    data['FECHA'] = (tmp.str[0]+tmp.str[1]+tmp.str[2]).astype(int)
 
     for i in ['PM25','PM10','O3','NO2','CO']:
         data[i] = data[i].astype('int')
 
+    #if os.path.exists('visualization'):
+        
+    #    data.to_csv('visualization/minambiente_data_v.csv')
+            
+    #else:
+    #    os.mkdir('visualization')
+    #    data.to_csv('visualization/minambiente_data_v.csv')
+
+
+ #   data['FECHA:YEAR'] = data['FECHA'].dt.year
+ #   data['FECHA:MONTH'] = data['FECHA'].dt.month
+ #   data['FECHA:DAY'] = data['FECHA'].dt.day
+
+    print("\nTIPO DE DATOS\n\n", data.dtypes)
     return data
 
 # Una vez que tenemos todos los datos limpios
