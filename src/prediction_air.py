@@ -24,10 +24,14 @@ rfr.fit(X_train, y_train)
 # Una vez entrenado, se establece el modelo predictivo
 y_pred = rfr.predict(X_test)
 
+# Prediccion para algunas fechas
+print("La prediccion del modelo para la particula", op,
+      "el 6 de julio y 31 de diciembre es de 2021 es: ", rfr.predict([[202176], [20211231]]))
+
 # Rendimiento del modelo
-print('Error Medio Absoluto:', metrics.mean_absolute_error(y_test, y_pred))
+print('\nError Medio Absoluto:', metrics.mean_absolute_error(y_test, y_pred))
 print('Error medio cuadratico:', metrics.mean_squared_error(y_test, y_pred))
 print('Raiz error medio cuadrático:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
 
 # Precision
-print('Precision:', rfr.score(X_train, y_train))
+print('\nPrecision:', rfr.score(X_train, y_train))
